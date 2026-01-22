@@ -33,7 +33,7 @@
                     </label>
                     <input name="name" type="text" required
                            class="w-full bg-slate-800/50 border border-white/5 rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-600/50 focus:border-blue-600/50 transition-all placeholder-slate-600"
-                           placeholder="John Doe" value="{{ old('name') }}">
+                           placeholder="Enter your name" value="{{ old('name') }}">
                     @error('name')
                         <p class="mt-2 text-xs font-bold text-red-400 ml-2">{{ $message }}</p>
                     @enderror
@@ -45,7 +45,7 @@
                     </label>
                     <input name="email" type="email" required
                            class="w-full bg-slate-800/50 border border-white/5 rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-600/50 focus:border-blue-600/50 transition-all placeholder-slate-600"
-                           placeholder="john@example.com" value="{{ old('email') }}">
+                           placeholder="business@example.com" value="{{ old('email') }}">
                     @error('email')
                         <p class="mt-2 text-xs font-bold text-red-400 ml-2">{{ $message }}</p>
                     @enderror
