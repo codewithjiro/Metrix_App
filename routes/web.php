@@ -27,9 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Dashboard & App Logic
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [ShipmentController::class, 'index'])->name('dashboard');
     Route::resource('shipments', ShipmentController::class);
 
     Route::patch('/shipments/{shipment}/status', [ShipmentController::class, 'updateStatus'])
         ->name('shipments.updateStatus');
+
+    Route::patch('/admin/users/{id}/promote', [ShipmentController::class, 'promoteUser'])->name('admin.promote');
+    Route::post('/admin/users', [ShipmentController::class, 'storeUser'])->name('admin.createUser');
+    Route::delete('/admin/users/{id}', [ShipmentController::class, 'destroyUser'])->name('admin.deleteUser');
 });

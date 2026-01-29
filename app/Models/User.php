@@ -21,7 +21,6 @@ class User extends Authenticatable
     }
 
     public function shipments() {
-        // Ensure this is Shipment (singular)
         return $this->hasMany(Shipment::class);
     }
 }
