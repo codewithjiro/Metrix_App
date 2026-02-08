@@ -10,6 +10,9 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
         .glass-sidebar { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px); border-right: 1px solid rgba(255, 255, 255, 0.05); }
         .nav-link-active { background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), transparent); border-left: 4px solid #3b82f6; color: white; }
+        /* Modal Animation Classes */
+        .modal-enter { opacity: 0; transform: scale(0.95); }
+        .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 0.2s, transform 0.2s; }
         [x-cloak] { display: none !important; }
     </style>
 </head>
@@ -56,12 +59,23 @@
                         </p>
                     </div>
                 </div>
-                <form action="{{ route('logout') }}" method="POST" class="inline">
+                
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                     @csrf
-                    <button type="submit" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">
+                </form>
+                
+                {{-- FIX: Added 'items-center' to align text and button perfectly --}}
+                <div class="flex items-center gap-4">
+                    <a href="{{ route('profile.edit') }}" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">
+                        Settings
+                    </a>
+                    
+                    <span class="text-slate-700 select-none">|</span>
+                    
+                    <button type="button" onclick="openLogoutModal()" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">
                         Logout
                     </button>
-                </form>
+                </div>
             </div>
         </aside>
         @endunless
@@ -84,9 +98,6 @@
                     <a href="{{ route('login') }}" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition">Login</a>
                     <a href="{{ route('register.show') }}" class="px-5 py-2 bg-blue-600 text-white text-xs font-bold rounded-full hover:bg-blue-500 transition">Join</a>
                 @else
-                    <div class="hidden md:flex bg-slate-900 px-4 py-2 rounded-full border border-white/5 text-[10px] font-black text-blue-400 uppercase tracking-widest">
-                        Operational Status: 100%
-                    </div>
                 @endguest
             </div>
         </header>
@@ -96,5 +107,50 @@
             @yield('content')
         </main>
     </div>
+
+    <div id="logoutModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-slate-900 border border-white/10 p-6 rounded-2xl shadow-2xl w-full max-w-sm relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-600/20 blur-3xl rounded-full pointer-events-none"></div>
+            
+            <h3 class="text-lg font-bold text-white mb-2">Sign Out?</h3>
+            <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+                Are you sure you want to end your session? You will need to login again to access your dashboard.
+            </p>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="closeLogoutModal()" class="flex-1 py-2.5 rounded-lg border border-white/10 text-xs font-bold uppercase tracking-wider text-slate-300 hover:bg-white/5 transition">
+                    Cancel
+                </button>
+                
+                <button onclick="document.getElementById('logout-form').submit()" class="flex-1 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider hover:bg-red-500 hover:text-white transition">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.firstElementChild.classList.add('modal-enter-active');
+                modal.firstElementChild.classList.remove('modal-enter');
+            }, 10);
+        }
+
+        function closeLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('logoutModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLogoutModal();
+            }
+        });
+    </script>
+
 </body>
 </html>

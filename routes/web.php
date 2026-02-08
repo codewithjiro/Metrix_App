@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 // Landing Page
 Route::get('/', function () {
@@ -36,4 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/users/{id}/promote', [ShipmentController::class, 'promoteUser'])->name('admin.promote');
     Route::post('/admin/users', [ShipmentController::class, 'storeUser'])->name('admin.createUser');
     Route::delete('/admin/users/{id}', [ShipmentController::class, 'destroyUser'])->name('admin.deleteUser');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });

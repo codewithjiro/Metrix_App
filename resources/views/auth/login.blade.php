@@ -37,7 +37,7 @@
                         </div>
                         <input name="email" type="email" required 
                             class="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all placeholder-gray-600 font-medium" 
-                            placeholder="agent@metrix.app" value="{{ old('email') }}">
+                            placeholder="Enter your email" value="{{ old('email') }}">
                     </div>
                     @error('email')
                         <p class="mt-2 text-xs text-red-400 font-bold flex items-center gap-1">
@@ -63,7 +63,7 @@
                         </div>
                         <input name="password" type="password" required 
                             class="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all placeholder-gray-600 font-medium" 
-                            placeholder="••••••••">
+                            placeholder="Enter you password">
                     </div>
                 </div>
 

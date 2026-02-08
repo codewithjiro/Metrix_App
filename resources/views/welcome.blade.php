@@ -80,7 +80,7 @@
     <section id="about" class="relative pt-48 pb-32">
         <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-bold uppercase tracking-widest mb-8 animate-pulse">
-                <span class="w-2 h-2 rounded-full bg-blue-400"></span> Live System V 1.1 
+                <span class="w-2 h-2 rounded-full bg-blue-400"></span> Live System V 2.0 
             </div>
             <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-[0.9]">
                 Logistics for the <br> <span class="gradient-text">Digital Era.</span>

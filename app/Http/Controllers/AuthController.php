@@ -41,7 +41,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 0, // Default to Customer
-            'profile_photo' => $path, // Save the path (or null) to database
+            'profile_photo' => $path ?? '../../storage/icon/person.png', 
         ]);
 
         Auth::login($user);
